@@ -1,6 +1,8 @@
 package ru.netology;
 
 
+
+
 import com.codeborne.selenide.Condition;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -8,11 +10,12 @@ import org.junit.jupiter.api.Test;
 
 
 import java.time.Duration;
-import java.util.Locale;
+
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
+
 
 
 public class Tests {
@@ -24,10 +27,10 @@ public class Tests {
 @Test
      void shouldActiveUser() {
             UserInfo userInfo = Generator.getNewUser("active");
-            $("[data-test-id=login] [class = input__control]").setValue(userInfo.getLogin());
+            $("[data-test-id=login] input").setValue(userInfo.getLogin());
             $("[data-test-id=password] [class = input__control]").setValue(userInfo.getPassword());
             $(byText("Продолжить")).click();
-            $(withText("Личный кабинет")).shouldBe(Condition.visible,Duration.ofSeconds(15));
+            $(withText("Личный кабинет")).shouldBe(Condition.visible, Duration.ofSeconds(15));
             }
 
 @Test
